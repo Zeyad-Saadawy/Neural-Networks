@@ -95,9 +95,9 @@ def check_hover_duration(flower, fitness_text):
 
 # Function to draw the garden grid
 def draw_garden(canvas, garden_size, canvas_width, canvas_height):
-    # Calculate number of columns and rows for the grid
-    cols = int(math.ceil(math.sqrt(garden_size)))
-    rows = int(math.ceil(garden_size / cols))
+    # Use two rows
+    rows = 2
+    cols = (garden_size + 1) // rows  # Calculate columns based on number of flowers
 
     # Calculate the spacing between flowers
     x_spacing = canvas_width // cols
@@ -112,6 +112,12 @@ def draw_garden(canvas, garden_size, canvas_width, canvas_height):
         flower = Flower()
         draw_flower(canvas, x, y, flower, i)
 
+# Function to handle the button click
+def evolve_generation():
+    print("Evolving new generation...")
+    # Put your logic for evolving the flowers here
+    # You can clear the canvas and redraw flowers or implement any logic you want
+
 # Set up tkinter window
 root = tk.Tk()
 root.title("Flower Garden")
@@ -123,5 +129,9 @@ canvas.pack()
 
 # Draw the garden with GARDEN_SIZE number of flowers
 draw_garden(canvas, GARDEN_SIZE, canvas_width, canvas_height)
+
+# Create "Evolve New Generation" button
+evolve_button = tk.Button(root, text="Evolve New Generation", command=evolve_generation)
+evolve_button.pack(pady=10)  # Add some padding for better spacing
 
 root.mainloop()
